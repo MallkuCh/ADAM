@@ -8,13 +8,13 @@ import pyjokes as jk
 listener = sp.Recognizer()
 engine = pt.init()
 voices = engine.getProperty("voices")
-engine.say("hola soy alexa, ¿que puedo hacer por ti?")
+engine.say("hola soy adam, ¿que puedo hacer por ti?")
 engine.runAndWait()
 
 
 def talk(text):
     engine.say(text)
-    engine.runAndWait() 
+    engine.runAndWait()
 
 
 def take_command():
@@ -24,9 +24,11 @@ def take_command():
         command = listener.recognize_google(voz, language="es")
         command = command.lower()
     try:
-        if "alexa" in command:
-            command = command.replace("alexa", "")
+        if "adam" in command:
+            command = command.replace("adam", "")
             print(command)
+    except:
+        pass
     return command
 
 
@@ -45,6 +47,8 @@ def run_alexa():
         des = command.replace("buscar", "")
         talk("buscando " + des)
         pw.search(des)
+    elif "cansado" in command:
+        talk("¿Te sientes cansado? podriamos hacer una sesion de meditacion")
     elif "joke" in command:
         broma = jk.get_joke(language="es")
         talk(broma)
